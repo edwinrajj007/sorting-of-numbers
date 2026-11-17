@@ -1,4 +1,5 @@
-# sorting-of-numbers
+# SORTING-OF-A-NUMBER
+
 ## Aim
 To write and execute an Assembly Language Program for sorting data in Ascending and  descending order using 8051 microcontroller on Keil software.
 ---
@@ -23,13 +24,39 @@ To write and execute an Assembly Language Program for sorting data in Ascending 
 ## Program (Ascending order)
 
 ```asm
+      ORG 0000H
 
+        MOV R4,#04H
+
+AGAIN:  MOV R3,#04H
+        MOV R0,#30H
+
+LOOP1:  MOV A,@R0
+        MOV B,A
+        INC R0
+        MOV A,@R0
+        CJNE A,B,CONTINUE
+
+CONTINUE:
+        JNC SKIP
+        MOV @R0,B
+        DEC R0
+        MOV @R0,A
+        INC R0
+
+SKIP:   DJNZ R3,LOOP1
+        DJNZ R4,AGAIN
+
+STOP:   SJMP STOP
+
+END
 
 
 
 ```
 ## OUTPUT(Ascending order)
 
+<img width="1535" height="862" alt="Screenshot 2026-10-24 143424" src="https://github.com/user-attachments/assets/db8beda1-a0c9-472c-8b5f-c63317f8e61a" />
 
 
 ---
@@ -49,6 +76,32 @@ To write and execute an Assembly Language Program for sorting data in Ascending 
 ## Program (Descending order)
 
 ```asm
+      ORG 0000H
+
+        MOV R4,#04H
+
+AGAIN:  MOV R3,#04H
+        MOV R0,#30H
+
+LOOP1:  MOV A,@R0
+        MOV B,A
+        INC R0
+        MOV A,@R0
+        CJNE A,B,CONTINUE
+
+CONTINUE:
+        JC SKIP
+        MOV @R0,B
+        DEC R0
+        MOV @R0,A
+        INC R0
+
+SKIP:   DJNZ R3,LOOP1
+        DJNZ R4,AGAIN
+
+STOP:   SJMP STOP
+
+END
 
 
 
@@ -56,9 +109,10 @@ To write and execute an Assembly Language Program for sorting data in Ascending 
 ```
 ## OUTPUT(Descending order)
 
+<img width="1535" height="862" alt="Screenshot 2026-10-24 143001" src="https://github.com/user-attachments/assets/e7b1b8b6-195b-4da1-9ab4-18584b0a994d" />
+
 
 
 ---
 ## RESULT:
 Thus the sorting of given data was done using 8051 keil software.
-
